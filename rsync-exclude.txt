@@ -1,0 +1,9 @@
+- *.tmp
+- *.temp
+- venv/
+- .venv/
+- node_modules/
+- ._*
+- Icon?
+- .DS_Store
+- .DS_Store?
