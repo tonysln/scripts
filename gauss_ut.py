@@ -39,7 +39,7 @@ def general_gaussian_step(M, i, j):                  # function for general gaus
         while R[i,j] == 0 and s < len(R): 
             R = swap_rows(R, i, s)
             s = s + 1
-            print(R)
+            # print(R)
 
         for t in range(len(R)): 
             if R[t,j] != 0 and t != i:
@@ -50,7 +50,7 @@ def general_gaussian_step(M, i, j):                  # function for general gaus
                 else: 
                     R = add_row_multiples(R, t, i, l, -k)
 
-                print(R)
+                # print(R)
     return R
  
 #############################################################################################################
@@ -67,26 +67,26 @@ def general_gaussian(M):
  
     rowind = array(range(len(R)))                     # vector of row indexes in R
     R = R[(rowind < i) | (R[:,len(R.T)-1] != 0),:]    # leaving out rows consisting only of zeros
-    print(R)
+    # print(R)
  
     if all(R[len(R)-1,range(len(R.T)-1)] == 0):     # enough to check the last row for contradiction
         raise ValueError('The system has no solution')
  
 
-    R = R.astype(np.float64)                              
+    R = R.astype(float)                              
     t = 0                                             # row index
     s = 0                                             # column index
     while s < len(R.T) and t < len(R):
         if R[t,s] != 0:                               # if the leading element is not zero
             R[t,:] = (float(1)/R[t,s])*R[t,:]         # the leading el. one by mult. the row with the inverse 
-            print(R)
+            # print(R)
             t = t+1
         s = s+1
  
 
     if len(R) == len(R.T)-1:                          # precisely one solution, return the last column
-        print(R[:,len(R.T)-1])
-        return
+        # print(R[:,len(R.T)-1])
+        return R[:,len(R.T)-1]
     else:
         print('The system has more then one solution')
         S = [0]*(len(R.T)-1)                          # we take the free variables equal to 0
@@ -99,5 +99,5 @@ def general_gaussian(M):
         return
 
 
-M = array([[0,1,-10,0],[3,-1,-5,9],[-2,1,3,-6]]) 
-general_gaussian(M)
+# M = array([[0,1,-10,0],[3,-1,-5,9],[-2,1,3,-6]]) 
+# general_gaussian(M)
