@@ -55,7 +55,7 @@ def sort_cyclic_shifts(s):
         if s[p[i]] != s[p[i-1]]:
             cc += 1
 
-        c[p[i]] = cc - 1
+        c[p[i]] = cc-1
 
     pn = [None]*n
     cn = [None]*n
@@ -79,7 +79,7 @@ def sort_cyclic_shifts(s):
 
         for i in range(n-1, -1, -1):
             cnt[c[pn[i]]] -= 1
-            p[cnt[c[pn[i]]]] = pn[i]
+            p[cnt[c[pn[i]]]] = pn[i] if pn[i] >= 0 else pn[i]+n
 
         cn[p[0]] = 0
         cc = 1
@@ -123,3 +123,4 @@ a = BWT(ts)
 # a = BWT('mississippi')
 print(a)
 print(IBWT(a))
+# print(naive_IBWT(a))
