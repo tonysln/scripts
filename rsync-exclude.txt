@@ -7,3 +7,6 @@
 - Icon?
 - .DS_Store
 - .DS_Store?
+- bower_components/
+- *.part
+- .Trash-*
