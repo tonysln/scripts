@@ -8,19 +8,18 @@ def det(M, sign=1):
     https://www.gutenberg.org/files/37354/37354-pdf.pdf
     """
 
+    assert len(M) == len(M[0]) # must be square
     step = 0
     A = [M]
-
+    
     while step < len(M) * len(M[0]):
-        rows = len(A[step][0])-1
-        cols = len(A[step])-1
-
-        if rows <= 0 or cols <= 0:
+        n = len(A[step])-1
+        if n <= 0:
             break
 
         # Cycle rows and try from scratch if zero elements found
-        for i in range(1, cols):
-            for j in range(1, rows):
+        for i in range(1, n):
+            for j in range(1, n):
                 if A[step][i][j] == 0:
                     # NB: still iffy about this, best to fallback to Gauss if zero detected
                     M_new = A[0][:i+step] + A[0][i+step+1:] + [A[0][i+step]]
@@ -28,9 +27,9 @@ def det(M, sign=1):
         
         # New sub-matrix
         # TODO memoize and re-use if needed
-        B = [[None]*cols for _ in range(rows)]
-        for i in range(cols):
-            for j in range(rows):
+        B = [[None]*n for _ in range(n)]
+        for i in range(n):
+            for j in range(n):
                 B[i][j] = (A[step][i][j] * A[step][i+1][j+1]) - (A[step][i][j+1] * A[step][i+1][j])
                 
                 if step > 0:
