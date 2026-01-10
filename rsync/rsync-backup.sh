@@ -3,7 +3,16 @@
 
 user="user"
 folders="dev docs media photos uni videos work"
-backup_path="/mnt/backup/@"
+# backup_path="/mnt/backup/@"
+# backup_path="/run/media/veracrypt1"
+backup_path=$1
+
+if [ -z "$backup_path" ]
+then
+   echo "Backup path not set!";
+   exit 1
+fi
+
 
 for folder in $folders;
 do
