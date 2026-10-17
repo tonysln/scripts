@@ -4,7 +4,7 @@ import os
 import struct
 import sys
 from datetime import datetime
-import exifread
+import exifread # pip3 install exifread
 
 logging.getLogger('exifread').setLevel(logging.ERROR)
 
